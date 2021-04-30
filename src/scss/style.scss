@@ -20,7 +20,6 @@ body {
 }
 
 body {
-  background-color: #111;
   display: flex;
   justify-content: center;
   //overflow-x: hidden;
@@ -41,7 +40,7 @@ h2 {
 }
 
 .page-background {
-  background-image: url("/img/backgrounds/ganyu.jpg");
+  background-image: url();
   background-attachment: fixed;
   background-size: cover;
   background-position: top;
