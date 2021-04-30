@@ -1,5 +1,13 @@
-$font-main: "Asap", sans-serif;
-$font-second: "Josefin Slab", serif;
+/* $font-main: "Asap", sans-serif;
+$font-second: "Josefin Slab", serif; */
+
+@font-face {
+  font-family: "genshinfont";
+  src: url("/genshinfont.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body {
   box-sizing: border-box;
@@ -7,11 +15,47 @@ body {
   margin: 0;
   font-size: 62.5%;
   color: white;
-  font-family: $font-second;
-  font-weight: 500;
+  font-family: genshinfont;
+  //font-weight: 500;
 }
+
 body {
   background-color: #111;
+  display: flex;
+  justify-content: center;
+  //overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+p {
+  font-weight: lighter;
+}
+p {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 4rem;
+}
+
+.page-background {
+  background-image: url("/img/backgrounds/ganyu.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 65vw;
+  background-color: rgba(71, 227, 255, 0.8);
+  height: 1000rem;
+  //width: 61vw;
+  //padding: 4rem;
 }
 
 .header {
@@ -20,6 +64,41 @@ body {
   margin: 3rem auto;
   text-align: center;
 }
+
+.genshin-logo {
+  width: 40rem;
+  height: auto;
+  position: absolute;
+  left: -2.4vw;
+  top: 2.7vh;
+}
+
+.banners-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  min-height: 17vh;
+  //height: 18vh;
+}
+
+.banner-img {
+  //width: 61vw;
+  width: 65vw;
+}
+
+.banner-header {
+  position: absolute;
+}
+
+//Specific banner adjustments
+
+//
 .top-rated {
   margin: 1rem auto 2rem auto;
   text-align: center;
