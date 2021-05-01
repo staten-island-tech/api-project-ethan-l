@@ -20,8 +20,9 @@ body {
 }
 
 body {
-  display: flex;
+  /*   display: flex;
   justify-content: center;
+  flex-direction: column; */
   //overflow-x: hidden;
 }
 
@@ -39,6 +40,15 @@ h2 {
   font-size: 4rem;
 }
 
+.header {
+  background-image: url("/img/backgrounds/headerpicture.jpg");
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: bottom;
+  background-attachment: fixed;
+}
+
 .page-background {
   background-image: url("/img/backgrounds/originalbackground.jpg");
   background-attachment: fixed;
@@ -48,6 +58,7 @@ h2 {
 }
 
 .container {
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   width: 65vw;
@@ -64,6 +75,7 @@ h2 {
 }
 
 .genshin-logo {
+  //center bottom and bigger, shadow, scrolls with page and fades as it goes up
   width: 40rem;
   height: auto;
   position: absolute;
