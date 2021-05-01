@@ -75,12 +75,13 @@ h2 {
 }
 
 .genshin-logo {
-  //center bottom and bigger, shadow, scrolls with page and fades as it goes up
-  width: 40rem;
+  //fades as it goes up
+  width: 50rem;
   height: auto;
   position: absolute;
-  left: -2.4vw;
-  top: 2.7vh;
+  align-self: center;
+  bottom: 3vh;
+  z-index: 5;
 }
 
 .banners-box {
