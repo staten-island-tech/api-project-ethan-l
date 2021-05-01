@@ -130,10 +130,13 @@ h2 {
     width: 50vw;
     min-width: 25rem;
   }
-  .container {
+  .container,
+  .banners-box,
+  .banner,
+  .banner-img {
     width: 100%;
   }
-  .banners-box {
+  /* .banners-box {
     width: 100%;
   }
   .banner {
@@ -141,7 +144,7 @@ h2 {
   }
   .banner-img {
     width: 100%;
-  }
+  } */
   h2 {
     font-size: 2.5rem;
   }
