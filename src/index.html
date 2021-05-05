@@ -3,100 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <!--   <link
-    href="https://fonts.googleapis.com/css2?family=Asap:wght@400;600&family=Josefin+Slab:ital,wght@0,300;0,400;1,300&display=swap"
-    rel="stylesheet" /> -->
+  <title>Find Animanga</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="scss/style.scss" />
 </head>
 
-<body class="page-background">
-  <img class="genshin-logo" src="/img/banners and logos/logo.png" alt="Genshin Impact Logo">
+<body>
+  <div class="navbar">
+    <a href="" class="nav-home">Home</a>
+    <!--search bar-->
+    <!--search button-->
+    <a href="" class="nav-random">Random</a>
+    <a href="" class="a-z">All Titles A-Z</a>
+  </div>
 
+  <section class="under-nav">d</section>
   <div class="container">
-    <h1 class="header page-header">Title</h1>
-
-    <div class="banners-box">
-
-      <div class="nations-banner banner">
-        <img class="banner-img nations-banner-img" src="/img/banners and logos/liyuebanner.jpg" alt="Liyue Banner">
-        <!--Automatic slideshow-->
-        <h2 class="nations-header banner-header">Regions</h2>
-      </div>
-
-      <div class="elements-banner banner">
-        <img src="/img/banners and logos/elements full color.png" alt="Elements Banner"
-          class="banner-img elements-banner-img">
-        <h2 class="elements-header banner-header">Elements</h2>
-      </div>
-
-      <div class="weapons-banner banner">
-        <img class="banner-img weapons-banner-img" src="/img/banners and logos/weapons banner 4 v5.jpg"
-          alt="Weapons Banner">
-        <h2 class="weapons-header banner-header">Weapons</h2>
-      </div>
-
-      <div class="artifacts-banner banner">
-        <img src="/img/banners and logos/artifacts banner.jpg" alt="Artifacts Banner"
-          class="banner-img artifacts-banner-img">
-        <h2 class="artifacts-header banner-header">Artifacts</h2>
-      </div>
-
-      <div class="domains-banner banner">
-        <img class="banner-img domains-banner-img" src="/img/banners and logos/domains banner.png" alt="Domains Banner">
-        <h2 class="domains-header banner-header">Domains</h2>
-      </div>
-
-      <div class="enemies-banner banner">
-        <img class="banner-img enemies-banner-img" src="/img/banners and logos/enemies banner.png" alt="Enemies Banner">
-        <h2 class="enemies-header banner-header">Enemies</h2>
-      </div>
-
-      <div class="materials-banner banner">
-        <img src="/img/banners and logos/materials banner.jpg" alt="Materials Banner"
-          class="banner-img materials-banner-img">
-        <h2 class="materials-header banner-header">Materials</h2>
-      </div>
-
-      <div class="consumables-banner banner">
-        <img src="/img/banners and logos/consumables banner.jpg" alt="Consumables Banner"
-          class="banner-img consumables-banner-img">
-        <h2 class="consumables-header banner-header">Consumables</h2>
-      </div>
-
+    <div class="page-header">
+      <h1 class="page-header-h1">Find Any Anime</h1>
     </div>
 
-    <!--    <h2 class="top-rated">Our Top Rated Movies</h2>
-    <section class="movie-grid"> -->
-    <!--  <div class="movie-card">
-        <div class="movie-card-front">
-          <img
-            src="https://image.tmdb.org/t/p/w300/r7vmZjiyZw9rpJMQJdXpjgiCOk9.jpg"
-            alt=""
-            class="poster"
-          />
-        </div>
-        <div class="movie-card-back">
-          <h3 class="movie-card-header banner-header">The Dark Knight</h3>
-          <div class="score-box">
-            <p class="user-score">Community Score</p>
-            <p class="user-score">8.4</p>
-          </div>
+    <h2 class="top-seasonals-h2 display-section-h2">Top Seasonals</h2>
+    <section class="top-seasonals display-section">
 
-          <div class="release-box">
-            <p class="release-date">Released</p>
-            <p class="release-date">2020-06-12</p>
-          </div>
-
-          <div class="movie-genres">
-            <li class="movie-genre">Sci-Fi</li>
-            <li class="movie-genre">Fantasy</li>
-            <li class="movie-genre">Horror</li>
-          </div>
+      <div class="card">
+        <p class="card-rating">8.8/10</p>
+        <img class="card-img" src="/img/slime dairies cover.jpg" alt="">
+        <div class="card-text">
+          <p class="card-title">Tensura Nikki: Tensei shitara Slime Datta Ken dfdfdfdfdfdfdfdf</p>
+          <p class="card-episodes">24 episodes</p>
         </div>
-      </div> -->
-    <!--     </section> -->
+      </div>
+
+    </section>
+
+    <h2 class="search display-section-h2">Find Animanga</h2>
+    <section class="search-section display-section">
+      <!--       <form action="/action_page.php">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form> -->
+      <form id="search-form" class="search-form">
+        <input name="search-area" class="search-area" placeholder="Search"></input>
+        <input type="submit" class="submit-button">
+        <!--SUBMIT BUTTON!!!!!!!!!!!!!!!!-->
+      </form>
+    </section>
+
+    <h2 class="upcoming display-section-h2">Upcoming Anime</h2>
+    <section class="upcoming display-section">
+
+      <div class="card">
+        <p class="card-rating">8.8/10</p>
+        <img class="card-img" src="/img/slime dairies cover.jpg" alt="">
+        <div class="card-text">
+          <p class="card-title">Tensura Nikki: Tensei shitara Slime Datta Ken dfdfdfdfdfdfdfdf</p>
+          <p class="card-episodes">24 episodes</p>
+        </div>
+      </div>
+
+    </section>
+
+    <h2 class="top-all-time-h2 display-section-h2">Highest Rated</h2>
+    <section class="top-all-time display-section">
+
+      <div class="card">
+        <p class="card-rating">8.8/10</p>
+        <img class="card-img" src="/img/slime dairies cover.jpg" alt="">
+        <div class="card-text">
+          <p class="card-title">Tensura Nikki: Tensei shitara Slime Datta Ken dfdfdfdfdfdfdfdf</p>
+          <p class="card-episodes">24 episodes</p>
+        </div>
+      </div>
+
+    </section>
+
+    <h2 class="popular-all-time-h2 display-section-h2">Most Popular</h2>
+    <section class="popular-all-time display-section">
+
+      <div class="card">
+        <p class="card-rating">8.8/10</p>
+        <img class="card-img" src="/img/slime dairies cover.jpg" alt="">
+        <div class="card-text">
+          <p class="card-title">Tensura Nikki: Tensei shitara Slime Datta Ken dfdfdfdfdfdfdfdf</p>
+          <p class="card-episodes">24 episodes</p>
+        </div>
+      </div>
+
+    </section>
+
   </div>
+
+  <!-- <section class="movie-grid">
+    <div class="movie-card">
+      <div class="movie-card-front">
+        <img src="https://image.tmdb.org/t/p/w300/r7vmZjiyZw9rpJMQJdXpjgiCOk9.jpg" alt="" class="poster" />
+      </div>
+      <div class="movie-card-back">
+        <h3 class="movie-card-header banner-header">The Dark Knight</h3>
+        <div class="score-box">
+          <p class="user-score">Community Score</p>
+          <p class="user-score">8.4</p>
+        </div>
+
+        <div class="release-box">
+          <p class="release-date">Released</p>
+          <p class="release-date">2020-06-12</p>
+        </div>
+
+        <div class="movie-genres">
+          <li class="movie-genre">Sci-Fi</li>
+          <li class="movie-genre">Fantasy</li>
+          <li class="movie-genre">Horror</li>
+        </div>
+      </div>
+    </div> 
+
+  </section>-->
 
   <script src="js/index.js"></script>
   <!-- <script src="js/background.js"></script> -->

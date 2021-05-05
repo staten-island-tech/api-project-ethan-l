@@ -1,114 +1,159 @@
-/* $font-main: "Asap", sans-serif;
-$font-second: "Josefin Slab", serif; */
+$font-main: "Manrope", sans-serif;
+$light-theme-bg: #edf1f5;
+$dark-theme-bg: #191919;
+$dark-theme-light: #202020;
+$dark-theme-hover: #383838;
+$dark-theme-blue: #426585;
+$dark-text-blue: #7fc3ff;
+$dark-text-gray: #839da6;
 
-@font-face {
-  font-family: "genshinfont";
-  src: url("/genshinfont.ttf");
-  font-weight: normal;
-  font-style: normal;
+* {
+  box-sizing: border-box;
 }
-
 html,
 body {
-  box-sizing: border-box;
   padding: 0;
   margin: 0;
   font-size: 62.5%;
-  color: white;
-  font-family: genshinfont;
-  //font-weight: 500;
+  color: #edf1f5;
 }
 
 body {
-  display: flex;
-  justify-content: center;
+  background-color: $dark-theme-bg;
+  font-family: $font-main;
   //overflow-x: hidden;
 }
 
-h1,
-h2,
-h3,
-p {
-  font-weight: lighter;
+a {
+  text-decoration: none;
 }
-p {
-  font-size: 2rem;
-}
-
 h2 {
   font-size: 4rem;
+  color: $dark-text-blue;
 }
 
-.page-background {
-  background-image: url("/img/backgrounds/originalbackground.jpg");
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: top;
-  background-repeat: no-repeat;
+.navbar {
+  width: 100%;
+  padding: 2.5rem;
+  font-size: 2.5rem;
+  position: fixed;
+  background-color: $dark-theme-bg;
+  z-index: 5;
+}
+.navbar a {
+  color: white;
+}
+.under-nav {
+  padding: 2.5rem;
+  font-size: 2.5rem;
 }
 
 .container {
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  width: 65vw;
-  background-color: rgba(71, 227, 255, 0.8);
-  //height: 150rem;
-  //width: 61vw;
-  //padding: 4rem;
+  width: 70vw;
+  padding: 3rem;
 }
 
 .page-header {
+  margin: 0;
+  padding: 10rem auto;
+  background-color: lightblue;
+}
+.page-header-h1 {
   font-size: 5.2rem;
-  margin: 10rem auto;
   text-align: center;
+  color: $dark-text-blue;
 }
 
-.genshin-logo {
-  width: 40rem;
-  height: auto;
+.display-section-h2 {
+  margin: 4rem 0 1.2rem 0;
+}
+
+.display-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: $dark-theme-light;
+  border-radius: 2rem;
+  padding: 1rem;
+  //border: 1px solid green;
+}
+
+.card {
+  width: 12vw;
+  //height: 45rem;
+  font-size: 1.6rem;
+  position: relative;
+  border-radius: 1rem;
+  border: 4px solid $dark-theme-light;
+}
+.card:hover {
+  background-color: $dark-theme-hover;
+  border: 4px solid #555555;
+}
+.card-rating {
   position: absolute;
-  left: -2.4vw;
-  top: 2.7vh;
+  top: 0;
+  margin: 0;
+  padding: 0.5rem;
+  background-color: #171717b3;
+  border-radius: 0 0 5px 0;
 }
-
-.banners-box {
+.card-img {
+  width: 100%;
+}
+.card-text {
+  width: 100%;
+  padding: 2px;
   display: flex;
   flex-direction: column;
-}
-
-.banner {
-  display: flex;
   justify-content: center;
   align-items: center;
-  //border: 1px solid black;
-  min-height: 17vh;
-  //height: 18vh;
+}
+.card-title {
+  width: 100%;
+  height: 5rem;
+
+  //MAKE ELLIPSIS!!!!!!!!!!!!!!!!!!!!!!!#202020
+  text-overflow: ellipsis;
   overflow: hidden;
+
+  text-align: center;
+  margin: 1rem;
+  color: $dark-text-blue;
+}
+.card-episodes {
+  text-align: center;
+  margin: 0 auto 1rem auto;
+  color: $dark-text-gray;
 }
 
-.banner-img {
-  //width: 61vw;
-  width: 65vw;
+//Search section
+.search-section {
+  background-color: #313e49;
 }
-.banner-header {
-  position: absolute;
-}
+.search-area {
+  height: 4rem;
+  width: 40rem;
+  max-width: 40rem;
+  font-size: 1.8rem;
+  color: white;
+  background-color: $dark-theme-light;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 4px;
+  text-transform: capitalize;
 
-.banner:hover .banner-img {
-  transition: all 0.3s ease-out;
-  transform: scale(1.1);
-  filter: brightness(0.5);
-  cursor: pointer;
-}
-.banner:hover .banner-header {
-  text-decoration: underline;
-  cursor: pointer;
-}
+  max-width: 34rem;
+  display: inline;
 
-//Specific banner adjustments
+  padding: 0.6rem 1.2rem;
+}
+//SUBMIT BUTTON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 //
-.top-rated {
+/* .top-rated {
   margin: 1rem auto 2rem auto;
   text-align: center;
   font-size: 3.8rem;
@@ -136,7 +181,8 @@ h2 {
   height: 100%;
   top: 0;
   left: 0;
-  /* background-image: url("https://image.tmdb.org/t/p/w300/r7vmZjiyZw9rpJMQJdXpjgiCOk9.jpg"); */
+
+  //background-image: url("https://image.tmdb.org/t/p/w300/r7vmZjiyZw9rpJMQJdXpjgiCOk9.jpg");
   background-position: center;
   z-index: 3;
   transition: all 0.3s;
@@ -202,4 +248,4 @@ h2 {
 .test {
   color: black;
   font-size: 3rem;
-}
+} */
