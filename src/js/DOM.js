@@ -1,7 +1,11 @@
 const DOMSelectors = {
-  grid: document.querySelector(".movie-grid"),
-  //
-  backgroundImg: document.querySelector(".page-background"),
+  //grid: document.querySelector(".movie-grid"),
+  // MINE
+  //backgroundImg: document.querySelector(".page-background"),
+  topSeasonals: document.querySelector(".top-seasonals"),
+  topUpcoming: document.querySelector(".upcoming"),
+  topAllTime: document.querySelector(".top-all-time"),
+  popularAllTime: document.querySelector(".popular-all-time"),
 };
 
 export { DOMSelectors };
