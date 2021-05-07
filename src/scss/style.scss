@@ -30,6 +30,7 @@ a {
 h2 {
   font-size: 4rem;
   color: $dark-text-blue;
+  margin: 0;
 }
 
 .navbar {
@@ -67,8 +68,19 @@ h2 {
   color: $dark-text-blue;
 }
 
-.display-section-h2 {
+.section-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
   margin: 4rem 0 1.2rem 0;
+}
+.display-section-h2 {
+}
+.see-all {
+  color: $dark-text-blue;
+  font-size: 1.8rem;
+  text-decoration: none;
+  margin: 0 2rem;
 }
 
 .display-section {
