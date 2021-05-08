@@ -3,27 +3,45 @@ import { genres } from "./genre";
 
 const topSeasonals = async function () {
   try {
-    const response = await fetch("https://api.jikan.moe/v3/top/anime/1/airing");
+    const response = await fetch(
+      "https://api.jikan.moe/v3/search/anime?q=&page=1&order_by=score&sort=desc&status=airing&type=tv&limit=6"
+    );
     const data = await response.json();
-    console.log(data.top);
-    const dataFirstSix = data.top.splice(0, 6);
+    console.log(data.results);
+
+    const dataFirstSix = data.results.splice(0, 6);
     console.log(dataFirstSix);
+
     dataFirstSix.forEach((anime) => {
-      DOMSelectors.topSeasonals.insertAdjacentHTML(
-        "beforeend",
-        `<div class="card">
-      <p class="card-rating">${anime.score}/10</p>
-      <img class="card-img" src="${anime.image_url}" alt="">
-      <div class="card-text">
-        <p class="card-title">${anime.title}</p>
-        <p class="card-episodes">${anime.episodes} episodes</p>
-      </div>
-    </div>`
-      );
+      if (anime.episodes === 0) {
+        DOMSelectors.topSeasonals.insertAdjacentHTML(
+          "beforeend",
+          `<div class="card">
+          <p class="card-rating">${anime.score}/10</p>
+          <img class="card-img" src="${anime.image_url}" alt="">
+          <div class="card-text">
+            <p class="card-title">${anime.title}</p>
+            <p class="card-episodes">? episodes</p>
+          </div>
+        </div>`
+        );
+      } else {
+        DOMSelectors.topSeasonals.insertAdjacentHTML(
+          "beforeend",
+          `<div class="card">
+          <p class="card-rating">${anime.score}/10</p>
+          <img class="card-img" src="${anime.image_url}" alt="">
+          <div class="card-text">
+            <p class="card-title">${anime.title}</p>
+            <p class="card-episodes">${anime.episodes} episodes</p>
+          </div>
+        </div>`
+        );
+      }
     });
   } catch (error) {
     console.log(error);
-    alert("Something went wrong.");
+    alert("Fetch failed for top seasonals.");
   }
 };
 topSeasonals();
@@ -37,10 +55,24 @@ const topUpcoming = async function () {
     console.log(data.top);
     const dataFirstSix = data.top.splice(0, 6);
     console.log(dataFirstSix);
+
     dataFirstSix.forEach((anime) => {
-      DOMSelectors.topUpcoming.insertAdjacentHTML(
-        "beforeend",
-        `<div class="card">
+      if (anime.start_date === null) {
+        DOMSelectors.topUpcoming.insertAdjacentHTML(
+          "beforeend",
+          `<div class="card">
+                
+                <img class="card-img" src="${anime.image_url}" alt="">
+                <div class="card-text">
+                  <p class="card-title">${anime.title}</p>
+                  <p class="card-episodes">Date not yet announced</p>
+                </div>
+              </div>`
+        );
+      } else {
+        DOMSelectors.topUpcoming.insertAdjacentHTML(
+          "beforeend",
+          `<div class="card">
         
         <img class="card-img" src="${anime.image_url}" alt="">
         <div class="card-text">
@@ -48,7 +80,8 @@ const topUpcoming = async function () {
           <p class="card-episodes">${anime.start_date}</p>
         </div>
       </div>`
-      );
+        );
+      }
     });
   } catch (error) {
     console.log(error);
@@ -112,3 +145,8 @@ const popularAllTime = async function () {
   }
 };
 popularAllTime();
+
+//One single see all page generic for each section
+//One single info page generic for each anime
+
+//jikan data is different from mal data?

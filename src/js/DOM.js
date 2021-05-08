@@ -6,6 +6,7 @@ const DOMSelectors = {
   topUpcoming: document.querySelector(".upcoming"),
   topAllTime: document.querySelector(".top-all-time"),
   popularAllTime: document.querySelector(".popular-all-time"),
+  episodes: document.querySelector(".card-episodes"),
 };
 
 export { DOMSelectors };
