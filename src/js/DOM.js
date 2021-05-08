@@ -7,6 +7,12 @@ const DOMSelectors = {
   topAllTime: document.querySelector(".top-all-time"),
   popularAllTime: document.querySelector(".popular-all-time"),
   episodes: document.querySelector(".card-episodes"),
+
+  seeAll: document.querySelectorAll(".see-all"),
+  seeAllTopSeasonals: document.getElementById("see-all-top-seasonals"),
+  seeAllTopUpcoming: document.getElementById("see-all-top-upcoming"),
+  seeAllHighestRated: document.getElementById("see-all-highest-rated"),
+  seeAllMostPopular: document.getElementById("see-all-most-popular"),
 };
 
 export { DOMSelectors };

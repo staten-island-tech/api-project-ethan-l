@@ -82,11 +82,15 @@ h2 {
   text-decoration: none;
   margin: 0 2rem;
 }
+.see-all:hover {
+  cursor: pointer;
+}
 
 .display-section {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
   background-color: $dark-theme-light;
   border-radius: 2rem;
   padding: 1rem;
@@ -94,7 +98,7 @@ h2 {
 }
 
 .card {
-  width: 12vw;
+  width: 10.97vw;
   //height: 45rem;
   font-size: 1.6rem;
   position: relative;
