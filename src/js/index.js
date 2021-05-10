@@ -7,10 +7,10 @@ const topSeasonals = async function () {
       "https://api.jikan.moe/v3/search/anime?q=&page=1&order_by=score&sort=desc&status=airing&type=tv&limit=6"
     );
     const data = await response.json();
-    console.log(data.results);
+    //(data.results);
 
     const dataFirstSix = data.results.splice(0, 6);
-    console.log(dataFirstSix);
+    //console.log(dataFirstSix);
 
     //Ternary operator for null episodes
 
@@ -54,9 +54,9 @@ const topUpcoming = async function () {
       "https://api.jikan.moe/v3/top/anime/1/upcoming"
     );
     const data = await response.json();
-    console.log(data.top);
+    //console.log(data.top);
     const dataFirstSix = data.top.splice(0, 6);
-    console.log(dataFirstSix);
+    //console.log(dataFirstSix);
 
     dataFirstSix.forEach((anime) => {
       if (anime.start_date === null) {
@@ -96,9 +96,9 @@ const topAllTime = async function () {
   try {
     const response = await fetch("https://api.jikan.moe/v3/top/anime/1");
     const data = await response.json();
-    console.log(data.top);
+    //console.log(data.top);
     const dataFirstSix = data.top.splice(0, 6);
-    console.log(dataFirstSix);
+    //console.log(dataFirstSix);
     dataFirstSix.forEach((anime) => {
       DOMSelectors.topAllTime.insertAdjacentHTML(
         "beforeend",
@@ -125,9 +125,9 @@ const popularAllTime = async function () {
       "https://api.jikan.moe/v3/top/anime/1/bypopularity"
     );
     const data = await response.json();
-    console.log(data.top);
+    //console.log(data.top);
     const dataFirstSix = data.top.splice(0, 6);
-    console.log(dataFirstSix);
+    //console.log(dataFirstSix);
     dataFirstSix.forEach((anime) => {
       DOMSelectors.popularAllTime.insertAdjacentHTML(
         "beforeend",
@@ -328,16 +328,17 @@ seeAllMostPopular();
 
 //
 const openInfo = function () {
-  console.log(DOMSelectors.cards);
-  let cardsArray = Array.from(DOMSelectors.cards);
+  const cards = document.getElementsByClassName("card");
+
+  console.log(cards);
+  let cardsArray = Array.from(cards);
   console.log(cardsArray);
 
-  //forEach
   cardsArray.forEach((card) => {
     card.addEventListener("click", async function (e) {
       console.log(e.target.closest(".card"));
       const card = e.target.closest(".card");
-      //`https://api.jikan.moe/v3/anime/${cardsArray[0].dataset.id}`
+
       try {
         const response = await fetch(
           `https://api.jikan.moe/v3/anime/${card.dataset.id}`
@@ -446,6 +447,12 @@ const openInfo = function () {
     });
   }); */
 };
-setTimeout(() => {
-  openInfo();
-}, 1000);
+
+const cards = document.getElementsByClassName("card");
+console.log(cards);
+let cardsArray = Array.from(cards);
+console.log(cardsArray);
+
+cardsArray.forEach((card) => {
+  card.addEventListener("click", openInfo);
+});
