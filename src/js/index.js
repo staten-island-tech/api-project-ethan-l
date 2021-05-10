@@ -316,6 +316,9 @@ const seeAllMostPopular = function () {
 };
 seeAllMostPopular();
 
+//
+// Open and close info
+//
 const openInfo = function () {
   console.log(DOMSelectors.cards);
   let cardsArray = Array.from(DOMSelectors.cards);
