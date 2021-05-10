@@ -12,6 +12,8 @@ const topSeasonals = async function () {
     const dataFirstSix = data.results.splice(0, 6);
     console.log(dataFirstSix);
 
+    //Ternary operator for null episodes
+
     dataFirstSix.forEach((anime) => {
       if (anime.episodes === 0) {
         DOMSelectors.topSeasonals.insertAdjacentHTML(
@@ -28,7 +30,7 @@ const topSeasonals = async function () {
       } else {
         DOMSelectors.topSeasonals.insertAdjacentHTML(
           "beforeend",
-          `<div class="card">
+          `<div class="card" data-id="${anime.mal_id}">
           <p class="card-rating">${anime.score}/10</p>
           <img class="card-img" src="${anime.image_url}" alt="">
           <div class="card-text">
@@ -60,7 +62,7 @@ const topUpcoming = async function () {
       if (anime.start_date === null) {
         DOMSelectors.topUpcoming.insertAdjacentHTML(
           "beforeend",
-          `<div class="card">
+          `<div class="card" data-id="${anime.mal_id}">
                 
                 <img class="card-img" src="${anime.image_url}" alt="">
                 <div class="card-text">
@@ -72,7 +74,7 @@ const topUpcoming = async function () {
       } else {
         DOMSelectors.topUpcoming.insertAdjacentHTML(
           "beforeend",
-          `<div class="card">
+          `<div class="card" data-id="${anime.mal_id}">
         
         <img class="card-img" src="${anime.image_url}" alt="">
         <div class="card-text">
@@ -100,7 +102,7 @@ const topAllTime = async function () {
     dataFirstSix.forEach((anime) => {
       DOMSelectors.topAllTime.insertAdjacentHTML(
         "beforeend",
-        `<div class="card">
+        `<div class="card" data-id="${anime.mal_id}">
           <p class="card-rating">${anime.score}/10</p>
           <img class="card-img" src="${anime.image_url}" alt="">
           <div class="card-text">
@@ -129,7 +131,7 @@ const popularAllTime = async function () {
     dataFirstSix.forEach((anime) => {
       DOMSelectors.popularAllTime.insertAdjacentHTML(
         "beforeend",
-        `<div class="card">
+        `<div class="card" data-id="${anime.mal_id}">
           <p class="card-rating">${anime.score}/10</p>
           <img class="card-img" src="${anime.image_url}" alt="">
           <div class="card-text">
@@ -163,7 +165,7 @@ const seeAllTopSeasonals = function () {
           if (anime.episodes === 0) {
             DOMSelectors.topSeasonals.insertAdjacentHTML(
               "beforeend",
-              `<div class="card">
+              `<div class="card" data-id="${anime.mal_id}">
                 <p class="card-rating">${anime.score}/10</p>
                 <img class="card-img" src="${anime.image_url}" alt="">
                 <div class="card-text">
@@ -175,7 +177,7 @@ const seeAllTopSeasonals = function () {
           } else {
             DOMSelectors.topSeasonals.insertAdjacentHTML(
               "beforeend",
-              `<div class="card">
+              `<div class="card" data-id="${anime.mal_id}">
                 <p class="card-rating">${anime.score}/10</p>
                 <img class="card-img" src="${anime.image_url}" alt="">
                 <div class="card-text">
@@ -213,7 +215,7 @@ const seeAllTopUpcoming = function () {
           if (anime.start_date === null) {
             DOMSelectors.topUpcoming.insertAdjacentHTML(
               "beforeend",
-              `<div class="card">
+              `<div class="card" data-id="${anime.mal_id}">
                         
                         <img class="card-img" src="${anime.image_url}" alt="">
                         <div class="card-text">
@@ -225,7 +227,7 @@ const seeAllTopUpcoming = function () {
           } else {
             DOMSelectors.topUpcoming.insertAdjacentHTML(
               "beforeend",
-              `<div class="card">
+              `<div class="card" data-id="${anime.mal_id}">
                 
                 <img class="card-img" src="${anime.image_url}" alt="">
                 <div class="card-text">
@@ -260,7 +262,7 @@ const seeAllHighestRated = function () {
         data.top.forEach((anime) => {
           DOMSelectors.topAllTime.insertAdjacentHTML(
             "beforeend",
-            `<div class="card">
+            `<div class="card" data-id="${anime.mal_id}">
                   <p class="card-rating">${anime.score}/10</p>
                   <img class="card-img" src="${anime.image_url}" alt="">
                   <div class="card-text">
@@ -296,7 +298,7 @@ const seeAllMostPopular = function () {
         data.top.forEach((anime) => {
           DOMSelectors.popularAllTime.insertAdjacentHTML(
             "beforeend",
-            `<div class="card">
+            `<div class="card" data-id="${anime.mal_id}">
                   <p class="card-rating">${anime.score}/10</p>
                   <img class="card-img" src="${anime.image_url}" alt="">
                   <div class="card-text">
@@ -317,27 +319,37 @@ const seeAllMostPopular = function () {
 seeAllMostPopular();
 
 //
-// Open and close info (cardsarray[0], data.genres[0], data.studios[0]) ALSO if episodes = null how to get it to display "?"
+
+// See top 50 openinfo and closeInfo don't work for new arrays
+// Upcoming anime info has different px size
+
+//ALSO if episodes = null how to get it to display "?" TERNARY OPERATOR
+//marrying array movie part for GENRES
+
 //
 const openInfo = function () {
   console.log(DOMSelectors.cards);
   let cardsArray = Array.from(DOMSelectors.cards);
   console.log(cardsArray);
 
-  cardsArray[0].addEventListener("click", async function () {
-    console.log(cardsArray[0].dataset.id);
-    //`https://api.jikan.moe/v3/anime/${cardsArray[0].dataset.id}`
-    try {
-      const response = await fetch(
-        `https://api.jikan.moe/v3/anime/${cardsArray[0].dataset.id}`
-        //watch whalen video to see how he did it
-      );
-      const data = await response.json();
-      console.log(data);
+  //forEach
+  cardsArray.forEach((card) => {
+    card.addEventListener("click", async function (e) {
+      console.log(e.target.closest(".card"));
+      const card = e.target.closest(".card");
+      //`https://api.jikan.moe/v3/anime/${cardsArray[0].dataset.id}`
+      try {
+        const response = await fetch(
+          `https://api.jikan.moe/v3/anime/${card.dataset.id}`
+          //event.target.____
+        );
+        const data = await response.json();
+        console.log(data);
+        console.log(data.studios[0].name);
 
-      document.body.insertAdjacentHTML(
-        "beforeend",
-        `    <div class="info-page-background" id="info-page">
+        document.body.insertAdjacentHTML(
+          "beforeend",
+          `    <div class="info-page-background" id="info-page">
     
         <div class="card-info" id="info-card">
     
@@ -347,18 +359,18 @@ const openInfo = function () {
             <p class="info-status">Status: ${data.status}</p>
             <p class="info-air-date">Aired: ${data.aired.string}</p>
             <p class="info-duration">Length: ${data.duration} (${data.type})</p>
-            <p class="info-rating">${data.rating}</p>
+            <p class="info-rating">Rating: ${data.rating}</p>
     
             <p class="info-genre">Genres: ${data.genres[0].name}</p>
-    
-            <p class="info-studios">Studio: ${data.studios[0].name}</p>
     
             <p class="info-score">Score: ${data.score}/10</p>
             <p class="info-popularity-rank">Popularity: ${data.members} (#${data.popularity})</p>
             <p class="info-rank">Rank: ${data.rank}</p>
     
             <p class="info-source">Source: ${data.source}</p>
-    
+            
+            <p class="info-studios">Studio: ${data.studios[0].name}</p>
+                
             <a href="${data.url}" class="info-mal-link">Link to MAL</a>
           </div>
     
@@ -377,55 +389,56 @@ const openInfo = function () {
     
         </div>
       </div>`
-      );
-      const infoPage = document.getElementById("info-page");
+        );
+        const infoPage = document.getElementById("info-page");
 
-      infoPage.style.opacity = "1";
-      console.log("info opened");
+        infoPage.style.opacity = "1";
+        console.log("info opened");
 
-      //Close
-      const closeInfo = function () {
-        document.addEventListener("click", (evt) => {
-          const infoCard = DOMSelectors.infoCard;
-          const leftPanel = DOMSelectors.leftPanel;
-          const infoTitle = DOMSelectors.infoTitle;
-          const infoSynopsis = DOMSelectors.infoSynopsis;
-          const infoSongs = DOMSelectors.infoSongs;
+        //Close
+        const closeInfo = function () {
+          document.addEventListener("click", (evt) => {
+            const infoCard = DOMSelectors.infoCard;
+            const leftPanel = DOMSelectors.leftPanel;
+            const infoTitle = DOMSelectors.infoTitle;
+            const infoSynopsis = DOMSelectors.infoSynopsis;
+            const infoSongs = DOMSelectors.infoSongs;
 
-          console.log(infoPage);
-          //const flexGrowOne = DOMSelectors.flexGrowOne;
+            console.log(infoPage);
+            //const flexGrowOne = DOMSelectors.flexGrowOne;
 
-          let targetElement = evt.target; // clicked element
+            let targetElement = evt.target; // clicked element
 
-          do {
-            if (
-              targetElement == leftPanel ||
-              targetElement == infoTitle ||
-              targetElement == infoSynopsis ||
-              targetElement == infoSongs
-            ) {
-              // This is a click inside. Do nothing, just return.
-              return;
-            }
-            // Go up the DOM
-            targetElement = targetElement.parentNode;
-          } while (targetElement);
+            do {
+              if (
+                targetElement == leftPanel ||
+                targetElement == infoTitle ||
+                targetElement == infoSynopsis ||
+                targetElement == infoSongs
+              ) {
+                // This is a click inside. Do nothing, just return.
+                return;
+              }
+              // Go up the DOM
+              targetElement = targetElement.parentNode;
+            } while (targetElement);
 
-          // This is a click outside.
-          infoPage.style.opacity = "0";
-          setTimeout(() => {
-            infoPage.parentNode.removeChild(infoPage);
-          }, 501);
+            // This is a click outside.
+            infoPage.style.opacity = "0";
+            setTimeout(() => {
+              infoPage.parentNode.removeChild(infoPage);
+            }, 501);
 
-          console.log("Closed");
-          //document.getElementById("flyout-debug").textContent = "Clicked outside!";
-        });
-      };
-      closeInfo();
-    } catch (error) {
-      console.log(error);
-      alert("Fetch failed for title.");
-    }
+            console.log("Closed");
+            //document.getElementById("flyout-debug").textContent = "Clicked outside!";
+          });
+        };
+        closeInfo();
+      } catch (error) {
+        console.log(error);
+        alert("Fetch failed for title.");
+      }
+    });
   });
   /*   cardsArray.forEach(function () {
     addEventListener("click", function () {
