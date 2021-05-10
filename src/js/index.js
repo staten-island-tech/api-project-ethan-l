@@ -317,7 +317,7 @@ const seeAllMostPopular = function () {
 seeAllMostPopular();
 
 //
-// Open and close info (cardsarray[0], data.genres[0], data.studios[0])
+// Open and close info (cardsarray[0], data.genres[0], data.studios[0]) ALSO if episodes = null how to get it to display "?"
 //
 const openInfo = function () {
   console.log(DOMSelectors.cards);
