@@ -148,180 +148,10 @@ const popularAllTime = async function () {
 };
 popularAllTime();
 
-const seeAllTopSeasonals = function () {
-  DOMSelectors.seeAllTopSeasonals.addEventListener("click", function () {
-    const topSeasonals = async function () {
-      try {
-        const response = await fetch(
-          "https://api.jikan.moe/v3/search/anime?q=&page=1&order_by=score&sort=desc&status=airing&type=tv"
-        );
-        const data = await response.json();
-        console.log(data.results);
-
-        DOMSelectors.seeAllTopSeasonals.innerHTML = "";
-        DOMSelectors.topSeasonals.innerHTML = "";
-
-        data.results.forEach((anime) => {
-          if (anime.episodes === 0) {
-            DOMSelectors.topSeasonals.insertAdjacentHTML(
-              "beforeend",
-              `<div class="card" data-id="${anime.mal_id}">
-                <p class="card-rating">${anime.score}/10</p>
-                <img class="card-img" src="${anime.image_url}" alt="">
-                <div class="card-text">
-                  <p class="card-title">${anime.title}</p>
-                  <p class="card-episodes">? episodes</p>
-                </div>
-              </div>`
-            );
-          } else {
-            DOMSelectors.topSeasonals.insertAdjacentHTML(
-              "beforeend",
-              `<div class="card" data-id="${anime.mal_id}">
-                <p class="card-rating">${anime.score}/10</p>
-                <img class="card-img" src="${anime.image_url}" alt="">
-                <div class="card-text">
-                  <p class="card-title">${anime.title}</p>
-                  <p class="card-episodes">${anime.episodes} episodes</p>
-                </div>
-              </div>`
-            );
-          }
-        });
-      } catch (error) {
-        console.log(error);
-        alert("Fetch failed for top seasonals.");
-      }
-    };
-    topSeasonals();
-  });
-};
-seeAllTopSeasonals();
-
-const seeAllTopUpcoming = function () {
-  DOMSelectors.seeAllTopUpcoming.addEventListener("click", function () {
-    const topUpcoming = async function () {
-      try {
-        const response = await fetch(
-          "https://api.jikan.moe/v3/top/anime/1/upcoming"
-        );
-        const data = await response.json();
-        console.log(data.top);
-
-        DOMSelectors.seeAllTopUpcoming.innerHTML = "";
-        DOMSelectors.topUpcoming.innerHTML = "";
-
-        data.top.forEach((anime) => {
-          if (anime.start_date === null) {
-            DOMSelectors.topUpcoming.insertAdjacentHTML(
-              "beforeend",
-              `<div class="card" data-id="${anime.mal_id}">
-                        
-                        <img class="card-img" src="${anime.image_url}" alt="">
-                        <div class="card-text">
-                          <p class="card-title">${anime.title}</p>
-                          <p class="card-episodes">Date not yet announced</p>
-                        </div>
-                      </div>`
-            );
-          } else {
-            DOMSelectors.topUpcoming.insertAdjacentHTML(
-              "beforeend",
-              `<div class="card" data-id="${anime.mal_id}">
-                
-                <img class="card-img" src="${anime.image_url}" alt="">
-                <div class="card-text">
-                  <p class="card-title">${anime.title}</p>
-                  <p class="card-episodes">${anime.start_date}</p>
-                </div>
-              </div>`
-            );
-          }
-        });
-      } catch (error) {
-        console.log(error);
-        alert("Fetch failed for top upcoming.");
-      }
-    };
-    topUpcoming();
-  });
-};
-seeAllTopUpcoming();
-
-const seeAllHighestRated = function () {
-  DOMSelectors.seeAllHighestRated.addEventListener("click", function () {
-    const highestRated = async function () {
-      try {
-        const response = await fetch("https://api.jikan.moe/v3/top/anime/1");
-        const data = await response.json();
-        console.log(data.top);
-
-        DOMSelectors.seeAllHighestRated.innerHTML = "";
-        DOMSelectors.topAllTime.innerHTML = "";
-
-        data.top.forEach((anime) => {
-          DOMSelectors.topAllTime.insertAdjacentHTML(
-            "beforeend",
-            `<div class="card" data-id="${anime.mal_id}">
-                  <p class="card-rating">${anime.score}/10</p>
-                  <img class="card-img" src="${anime.image_url}" alt="">
-                  <div class="card-text">
-                    <p class="card-title">${anime.title}</p>
-                    <p class="card-episodes">${anime.episodes} episodes</p>
-                  </div>
-                </div>`
-          );
-        });
-      } catch (error) {
-        console.log(error);
-        alert("Fetch failed for highest rated.");
-      }
-    };
-    highestRated();
-  });
-};
-seeAllHighestRated();
-
-const seeAllMostPopular = function () {
-  DOMSelectors.seeAllMostPopular.addEventListener("click", function () {
-    const mostPopular = async function () {
-      try {
-        const response = await fetch(
-          "https://api.jikan.moe/v3/top/anime/1/bypopularity"
-        );
-        const data = await response.json();
-        console.log(data.top);
-
-        DOMSelectors.seeAllMostPopular.innerHTML = "";
-        DOMSelectors.popularAllTime.innerHTML = "";
-
-        data.top.forEach((anime) => {
-          DOMSelectors.popularAllTime.insertAdjacentHTML(
-            "beforeend",
-            `<div class="card" data-id="${anime.mal_id}">
-                  <p class="card-rating">${anime.score}/10</p>
-                  <img class="card-img" src="${anime.image_url}" alt="">
-                  <div class="card-text">
-                    <p class="card-title">${anime.title}</p>
-                    <p class="card-episodes">${anime.episodes} episodes</p>
-                  </div>
-                </div>`
-          );
-        });
-      } catch (error) {
-        console.log(error);
-        alert("Fetch failed for highest rated.");
-      }
-    };
-    mostPopular();
-  });
-};
-seeAllMostPopular();
-
 //
 
-// See top 50 openinfo and closeInfo don't work for new arrays
-// Upcoming anime info has different px size
+// See top 50 openinfo and closeInfo don't work for new arrays DONE
+// Upcoming anime info has different px size!!!!!!!!!!!!!!!!!!!!!!!
 
 //ALSO if episodes = null how to get it to display "?" TERNARY OPERATOR
 //marrying array movie part for GENRES
@@ -391,9 +221,9 @@ const openInfo = function () {
         </div>
       </div>`
         );
-        const infoPage = document.getElementById("info-page");
+        //const infoPage = document.getElementById("info-page");
 
-        infoPage.style.opacity = "1";
+        document.getElementById("info-page").style.opacity = "1";
         console.log("info opened");
 
         //Close
@@ -405,7 +235,7 @@ const openInfo = function () {
             const infoSynopsis = DOMSelectors.infoSynopsis;
             const infoSongs = DOMSelectors.infoSongs;
 
-            console.log(infoPage);
+            console.log(document.getElementById("info-page"));
             //const flexGrowOne = DOMSelectors.flexGrowOne;
 
             let targetElement = evt.target; // clicked element
@@ -425,10 +255,12 @@ const openInfo = function () {
             } while (targetElement);
 
             // This is a click outside.
-            infoPage.style.opacity = "0";
-            setTimeout(() => {
-              infoPage.parentNode.removeChild(infoPage);
-            }, 501);
+            //infoPage.style.opacity = "0";
+            //setTimeout(() => {
+            document
+              .getElementById("info-page")
+              .parentNode.removeChild(document.getElementById("info-page"));
+            //}, 100);
 
             console.log("Closed");
             //document.getElementById("flyout-debug").textContent = "Clicked outside!";
@@ -447,12 +279,186 @@ const openInfo = function () {
     });
   }); */
 };
+setTimeout(() => {
+  const cards = document.getElementsByClassName("card");
+  console.log(cards);
+  const cardsArray = [...cards];
 
-const cards = document.getElementsByClassName("card");
-console.log(cards);
-let cardsArray = Array.from(cards);
-console.log(cardsArray);
+  cardsArray.forEach((card) => {
+    card.addEventListener("click", openInfo);
+  });
+}, 500);
 
-cardsArray.forEach((card) => {
-  card.addEventListener("click", openInfo);
-});
+const seeAllTopSeasonals = function () {
+  DOMSelectors.seeAllTopSeasonals.addEventListener("click", function () {
+    const topSeasonals = async function () {
+      try {
+        const response = await fetch(
+          "https://api.jikan.moe/v3/search/anime?q=&page=1&order_by=score&sort=desc&status=airing&type=tv"
+        );
+        const data = await response.json();
+        console.log(data.results);
+
+        DOMSelectors.seeAllTopSeasonals.innerHTML = "";
+        DOMSelectors.topSeasonals.innerHTML = "";
+
+        data.results.forEach((anime) => {
+          if (anime.episodes === 0) {
+            DOMSelectors.topSeasonals.insertAdjacentHTML(
+              "beforeend",
+              `<div class="card" data-id="${anime.mal_id}">
+                <p class="card-rating">${anime.score}/10</p>
+                <img class="card-img" src="${anime.image_url}" alt="">
+                <div class="card-text">
+                  <p class="card-title">${anime.title}</p>
+                  <p class="card-episodes">? episodes</p>
+                </div>
+              </div>`
+            );
+          } else {
+            DOMSelectors.topSeasonals.insertAdjacentHTML(
+              "beforeend",
+              `<div class="card" data-id="${anime.mal_id}">
+                <p class="card-rating">${anime.score}/10</p>
+                <img class="card-img" src="${anime.image_url}" alt="">
+                <div class="card-text">
+                  <p class="card-title">${anime.title}</p>
+                  <p class="card-episodes">${anime.episodes} episodes</p>
+                </div>
+              </div>`
+            );
+          }
+        });
+        openInfo();
+      } catch (error) {
+        console.log(error);
+        alert("Fetch failed for top seasonals.");
+      }
+    };
+    topSeasonals();
+  });
+};
+seeAllTopSeasonals();
+
+const seeAllTopUpcoming = function () {
+  DOMSelectors.seeAllTopUpcoming.addEventListener("click", function () {
+    const topUpcoming = async function () {
+      try {
+        const response = await fetch(
+          "https://api.jikan.moe/v3/top/anime/1/upcoming"
+        );
+        const data = await response.json();
+        console.log(data.top);
+
+        DOMSelectors.seeAllTopUpcoming.innerHTML = "";
+        DOMSelectors.topUpcoming.innerHTML = "";
+
+        data.top.forEach((anime) => {
+          if (anime.start_date === null) {
+            DOMSelectors.topUpcoming.insertAdjacentHTML(
+              "beforeend",
+              `<div class="card" data-id="${anime.mal_id}">
+                        
+                        <img class="card-img" src="${anime.image_url}" alt="">
+                        <div class="card-text">
+                          <p class="card-title">${anime.title}</p>
+                          <p class="card-episodes">Date not yet announced</p>
+                        </div>
+                      </div>`
+            );
+          } else {
+            DOMSelectors.topUpcoming.insertAdjacentHTML(
+              "beforeend",
+              `<div class="card" data-id="${anime.mal_id}">
+                
+                <img class="card-img" src="${anime.image_url}" alt="">
+                <div class="card-text">
+                  <p class="card-title">${anime.title}</p>
+                  <p class="card-episodes">${anime.start_date}</p>
+                </div>
+              </div>`
+            );
+          }
+        });
+        openInfo();
+      } catch (error) {
+        console.log(error);
+        alert("Fetch failed for top upcoming.");
+      }
+    };
+    topUpcoming();
+  });
+};
+seeAllTopUpcoming();
+
+const seeAllHighestRated = function () {
+  DOMSelectors.seeAllHighestRated.addEventListener("click", function () {
+    const highestRated = async function () {
+      try {
+        const response = await fetch("https://api.jikan.moe/v3/top/anime/1");
+        const data = await response.json();
+        console.log(data.top);
+
+        DOMSelectors.seeAllHighestRated.innerHTML = "";
+        DOMSelectors.topAllTime.innerHTML = "";
+
+        data.top.forEach((anime) => {
+          DOMSelectors.topAllTime.insertAdjacentHTML(
+            "beforeend",
+            `<div class="card" data-id="${anime.mal_id}">
+                  <p class="card-rating">${anime.score}/10</p>
+                  <img class="card-img" src="${anime.image_url}" alt="">
+                  <div class="card-text">
+                    <p class="card-title">${anime.title}</p>
+                    <p class="card-episodes">${anime.episodes} episodes</p>
+                  </div>
+                </div>`
+          );
+        });
+        openInfo();
+      } catch (error) {
+        console.log(error);
+        alert("Fetch failed for highest rated.");
+      }
+    };
+    highestRated();
+  });
+};
+seeAllHighestRated();
+
+const seeAllMostPopular = function () {
+  DOMSelectors.seeAllMostPopular.addEventListener("click", function () {
+    const mostPopular = async function () {
+      try {
+        const response = await fetch(
+          "https://api.jikan.moe/v3/top/anime/1/bypopularity"
+        );
+        const data = await response.json();
+        console.log(data.top);
+
+        DOMSelectors.seeAllMostPopular.innerHTML = "";
+        DOMSelectors.popularAllTime.innerHTML = "";
+
+        data.top.forEach((anime) => {
+          DOMSelectors.popularAllTime.insertAdjacentHTML(
+            "beforeend",
+            `<div class="card" data-id="${anime.mal_id}">
+                  <p class="card-rating">${anime.score}/10</p>
+                  <img class="card-img" src="${anime.image_url}" alt="">
+                  <div class="card-text">
+                    <p class="card-title">${anime.title}</p>
+                    <p class="card-episodes">${anime.episodes} episodes</p>
+                  </div>
+                </div>`
+          );
+        });
+        openInfo();
+      } catch (error) {
+        console.log(error);
+        alert("Fetch failed for highest rated.");
+      }
+    };
+    mostPopular();
+  });
+};
+seeAllMostPopular();
