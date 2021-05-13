@@ -4,7 +4,7 @@ import { genres } from "./genre";
 const topSeasonals = async function () {
   try {
     const response = await fetch(
-      "https://api.jikan.moe/v3/search/anime?q=&page=1&order_by=score&sort=desc&status=airing&type=tv&limit=6"
+      "https://api.jikan.moe/v3/search/anime?status=airing&type=tv&start_date=2021-02-01&sort=desc&order_by=score&limit=6"
     );
     const data = await response.json();
     //(data.results);
@@ -150,11 +150,11 @@ popularAllTime();
 
 //
 
-// See top 50 openinfo and closeInfo don't work for new arrays DONE
-// Upcoming anime info has different px size!!!!!!!!!!!!!!!!!!!!!!!
+//
+// anime info has different px size!!!!!!!!!!!!!!!!!!!!!!!
 
-//ALSO if episodes = null how to get it to display "?" TERNARY OPERATOR
-//marrying array movie part for GENRES
+//(if episodes = null how to get it to display "?" TERNARY OPERATOR
+//marrying array movie part for GENRES (bypassed))
 
 //
 const openInfo = function () {
@@ -176,7 +176,35 @@ const openInfo = function () {
         );
         const data = await response.json();
         console.log(data);
-        console.log(data.studios[0].name);
+        //console.log(data.studios[0].name);
+
+        let studios = "";
+        if (data.studios.length === 0) {
+          studios = "Not yet known";
+        } else {
+          studios = data.studios[0].name;
+        }
+
+        let rank = "";
+        if (data.rank === null) {
+          rank = "?";
+        } else {
+          rank = data.rank;
+        }
+
+        let score = "";
+        if (data.score === null) {
+          score = "?";
+        } else {
+          score = data.score;
+        }
+
+        let episodes = "";
+        if (data.episodes === null) {
+          episodes = "?";
+        } else {
+          episodes = data.episodes;
+        }
 
         document.body.insertAdjacentHTML(
           "beforeend",
@@ -186,7 +214,7 @@ const openInfo = function () {
     
           <div class="info-left-panel" id="info-left-panel">
             <img src="${data.image_url}" alt="${data.title} Cover">
-            <p class="info-episodes">Episodes: ${data.episodes}</p>
+            <p class="info-episodes">Episodes: ${episodes}</p>
             <p class="info-status">Status: ${data.status}</p>
             <p class="info-air-date">Aired: ${data.aired.string}</p>
             <p class="info-duration">Length: ${data.duration} (${data.type})</p>
@@ -194,13 +222,13 @@ const openInfo = function () {
     
             <p class="info-genre">Genres: ${data.genres[0].name}</p>
     
-            <p class="info-score">Score: ${data.score}/10</p>
+            <p class="info-score">Score: ${score}/10</p>
             <p class="info-popularity-rank">Popularity: ${data.members} (#${data.popularity})</p>
-            <p class="info-rank">Rank: ${data.rank}</p>
+            <p class="info-rank">Rank: #${rank}</p>
     
             <p class="info-source">Source: ${data.source}</p>
             
-            <p class="info-studios">Studio: ${data.studios[0].name}</p>
+            <p class="info-studios">Studio: ${studios}</p>
                 
             <a href="${data.url}" class="info-mal-link">Link to MAL</a>
           </div>
@@ -294,7 +322,7 @@ const seeAllTopSeasonals = function () {
     const topSeasonals = async function () {
       try {
         const response = await fetch(
-          "https://api.jikan.moe/v3/search/anime?q=&page=1&order_by=score&sort=desc&status=airing&type=tv"
+          "https://api.jikan.moe/v3/search/anime?status=airing&type=tv&start_date=2021-02-01&sort=desc&order_by=score"
         );
         const data = await response.json();
         console.log(data.results);
@@ -462,3 +490,49 @@ const seeAllMostPopular = function () {
   });
 };
 seeAllMostPopular();
+
+//search bar
+// get query, push into key, display results
+const search = function () {
+  DOMSelectors.searchForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    //console.log("submit");
+    DOMSelectors.searchResultsDisplay.style.display = "flex";
+    /* DOMSelectors.searchResultsDisplay.innerHTML =
+      "<p class='loading'>Loading...</p>"; */
+    DOMSelectors.searchResultsDisplay.innerHTML =
+      "<span id='loading-span'><i class='loading-symbol w3-spin fa fa-refresh'></i></span>";
+    const searchParams = DOMSelectors.searchTextArea.value;
+    console.log(searchParams);
+    const searchQuery = async function () {
+      try {
+        const response = await fetch(
+          `https://api.jikan.moe/v3/search/anime?q=${searchParams}&limit=25`
+        );
+        const data = await response.json();
+        console.log(data.results);
+
+        DOMSelectors.searchResultsDisplay.innerHTML = "";
+        data.results.forEach((anime) => {
+          DOMSelectors.searchResultsDisplay.insertAdjacentHTML(
+            "beforeend",
+            `<div class="card" data-id="${anime.mal_id}">
+              <p class="card-rating">${anime.score}/10</p>
+              <img class="card-img" src="${anime.image_url}" alt="">
+              <div class="card-text">
+                <p class="card-title">${anime.title}</p>
+                <p class="card-episodes">${anime.episodes} episodes</p>
+              </div>
+            </div>`
+          );
+        });
+        openInfo();
+      } catch (error) {
+        console.log(error);
+        alert("Something went wrong.");
+      }
+    };
+    searchQuery();
+  });
+};
+search();

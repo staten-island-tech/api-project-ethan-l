@@ -23,6 +23,11 @@ const DOMSelectors = {
   flexGrowOne: document.getElementById("flex-grow-1"),
 
   cards: document.getElementsByClassName("card"),
+
+  searchForm: document.getElementById("search-form"),
+  searchTextArea: document.getElementById("search-area"),
+  searchButton: document.getElementById("submit-button"),
+  searchResultsDisplay: document.getElementById("search-results"),
 };
 
 export { DOMSelectors };

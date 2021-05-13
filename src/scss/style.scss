@@ -28,7 +28,9 @@ a {
   text-decoration: none;
 }
 h2 {
+  font-family: $font-main;
   font-size: 4rem;
+  font-weight: 600;
   color: $dark-text-blue;
   margin: 0;
 }
@@ -96,6 +98,8 @@ h2 {
   padding: 1rem;
   //border: 1px solid green;
 }
+#top-seasonals-entirety {
+}
 
 .card {
   width: 10.97vw;
@@ -149,24 +153,53 @@ h2 {
 //Search section
 .search-section {
   background-color: #313e49;
+  margin-bottom: 2rem;
+}
+.search-form {
+  margin: 1rem 0;
 }
 .search-area {
   height: 4rem;
   width: 40rem;
   max-width: 40rem;
+  display: inline;
   font-size: 1.8rem;
   color: white;
   background-color: $dark-theme-light;
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  border-radius: 4px;
+  border: 2px solid rgba(255, 255, 255, 0.11);
+  border-radius: 5px;
   text-transform: capitalize;
-
-  max-width: 34rem;
-  display: inline;
 
   padding: 0.6rem 1.2rem;
 }
-//SUBMIT BUTTON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+.search-results {
+  display: none;
+}
+/* .loading {
+  font-size: 1.8rem;
+} */
+.loading-symbol {
+  font-size: 5rem;
+}
+#loading-span {
+  margin: 2rem 0;
+}
+.submit-button {
+  font-size: 2.25rem;
+  background-color: transparent;
+
+  color: #8a8a8acf;
+
+  margin-left: -4rem;
+  text-align: center;
+
+  border: none;
+
+  outline: none;
+}
+.submit-button:hover {
+  cursor: pointer;
+}
 
 //Info page
 .info-page-background {
