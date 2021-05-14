@@ -150,9 +150,6 @@ const popularAllTime = async function () {
 
 //
 
-//
-// anime info has different px size!!!!!!!!!!!!!!!!!!!!!!!
-
 //(if episodes = null how to get it to display "?" TERNARY OPERATOR
 //marrying array movie part for GENRES (bypassed))
 
@@ -550,3 +547,5 @@ const search = function () {
   });
 };
 search();
+
+//make the left panel stats into a ul
