@@ -46,7 +46,7 @@ const topSeasonals = async function () {
     alert("Fetch failed for top seasonals.");
   }
 };
-topSeasonals();
+//topSeasonals();
 
 const topUpcoming = async function () {
   try {
@@ -90,7 +90,7 @@ const topUpcoming = async function () {
     alert("Something went wrong.");
   }
 };
-topUpcoming();
+//topUpcoming();
 
 const topAllTime = async function () {
   try {
@@ -117,7 +117,7 @@ const topAllTime = async function () {
     alert("Something went wrong.");
   }
 };
-topAllTime();
+//topAllTime();
 
 const popularAllTime = async function () {
   try {
@@ -146,7 +146,7 @@ const popularAllTime = async function () {
     alert("Something went wrong.");
   }
 };
-popularAllTime();
+//popularAllTime();
 
 //
 
@@ -160,7 +160,7 @@ popularAllTime();
 const openInfo = function () {
   const cards = document.getElementsByClassName("card");
 
-  console.log(cards);
+  //console.log(cards);
   let cardsArray = Array.from(cards);
   console.log(cardsArray);
 
@@ -307,15 +307,28 @@ const openInfo = function () {
     });
   }); */
 };
-setTimeout(() => {
+
+//setTimeout(() => {
+const openFunction = function () {
   const cards = document.getElementsByClassName("card");
-  console.log(cards);
+  //console.log(cards);
   const cardsArray = [...cards];
+  //console.log(cardsArray);
 
   cardsArray.forEach((card) => {
     card.addEventListener("click", openInfo);
   });
-}, 500);
+};
+
+async function init() {
+  await topSeasonals();
+  await topUpcoming();
+  await topAllTime();
+  await popularAllTime();
+  await openInfo();
+}
+init();
+//}, 500);
 
 const seeAllTopSeasonals = function () {
   DOMSelectors.seeAllTopSeasonals.addEventListener("click", function () {
