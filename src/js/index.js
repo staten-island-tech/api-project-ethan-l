@@ -309,7 +309,7 @@ const openInfo = function () {
 };
 
 //setTimeout(() => {
-const openFunction = function () {
+/* const openFunction = function () {
   const cards = document.getElementsByClassName("card");
   //console.log(cards);
   const cardsArray = [...cards];
@@ -318,14 +318,15 @@ const openFunction = function () {
   cardsArray.forEach((card) => {
     card.addEventListener("click", openInfo);
   });
-};
+}; */
 
 async function init() {
   await topSeasonals();
   await topUpcoming();
   await topAllTime();
   await popularAllTime();
-  await openInfo();
+
+  openInfo();
 }
 init();
 //}, 500);
