@@ -549,3 +549,4 @@ const search = function () {
 search();
 
 //make the left panel stats into a ul
+//media queries?
